@@ -7,3 +7,37 @@
 #greeting-container {
   margin-top: 20px;
 }
+
+h1 {
+  text-align: center;
+  text-transform: uppercase;
+  font-family: sans-serif;
+}
+
+p {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a:link, a:visited {
+  background-color: #fca310;
+  text-transform: uppercase;
+  color: white;
+  padding: 12px 35px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+a:hover, a:active {
+  background-color: #d28025;
+}
+
+.circular {
+    border-top-left-radius:  50% 50%;
+    border-top-right-radius:  50% 50%;
+    border-bottom-left-radius:  50% 50%;
+    border-bottom-right-radius:  50% 50%;
+}
