@@ -15,6 +15,8 @@
 /**
  * Adds a random greeting to the page.
  */
+
+// ---------------- ADD RANDOM GREETING ---------------- //
 function addRandomGreeting() {
   const greetings =
       ['I have a dog called Cheeku', 'I am a huge Harry Potter fan'];

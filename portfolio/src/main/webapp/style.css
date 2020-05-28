@@ -1,3 +1,29 @@
+/**************** HEADER *******************/
+.header {
+  background: white;
+  color: black;
+  margin: 0px;
+  padding: 10px 16px;
+  z-index: 1;
+  top: 0;
+  width: 100%;
+  position: fixed;
+}
+
+.title {
+  color: black;
+  text-transform: uppercase;
+  font-family: sans-serif;
+  font-weight: 100;
+  font-size: 20px;
+}
+
+
+body {
+    background-color: #b3bfc7;
+    margin: 0px;
+}
+
 #content {
   margin-left: auto;
   margin-right: auto;
@@ -40,4 +66,12 @@ a:hover, a:active {
     border-top-right-radius:  50% 50%;
     border-bottom-left-radius:  50% 50%;
     border-bottom-right-radius:  50% 50%;
+}
+
+.circle {
+  height: 200x;
+  width: 200px;
+  background-color: rgb(179, 67, 67);
+  border-radius: 50%;
+  display: inline-block;
 }
