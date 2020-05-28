@@ -1,18 +1,38 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-  </head>
-  <body>
-    <div id="content">
-      <h1>My Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
+<head>
+  <meta charset="UTF-8">
+  <title>Fiza Goyal</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+</head>
+<body>
+  <div class="header" id="stickyHeader">
+    <h2 class = "title">Fiza Goyal</h2>
+    
+    <!-- The navigation menu -->
+    <div class="navbar">
+      <a class="active" href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#">Projects</a>
+      <a href="#">Contact</a>
+  </div>
+  </div>
+  <div id = "content">
+    <div id = "about">
+        <a name = "about"></a>
+        <h1>Hi! I'm Fiza</h1>
+        <p>I'm currently an incoming junior studying Computer Science at the University of Illinois at Urbana-Champaign.</p>
+        <img class = "circular" src="resources/headshot_square.png" alt="My headshot!" width="300" height="300">
+        <a href="/resources/FizaGoyalResume.pdf" target="_blank">Resume</a>
+        <span class="circle"></span>
+        <p>Click here to get a random message:</p>
+        <button onclick="addRandomGreeting()">Hello</button>
+        <div id="greeting-container"></div>
     </div>
-  </body>
-</html>
+    <div id = "experience">
+        <a name = "experience"></a>
+        <h3>EXPERIENCE</h3>
+    </div>
+  </div>
+</body>

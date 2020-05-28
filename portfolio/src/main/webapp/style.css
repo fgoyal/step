@@ -1,3 +1,29 @@
+/**************** HEADER *******************/
+.header {
+  background: white;
+  color: black;
+  margin: 0px;
+  padding: 10px 16px;
+  z-index: 1;
+  top: 0;
+  width: 100%;
+  position: fixed;
+}
+
+.title {
+  color: black;
+  text-transform: uppercase;
+  font-family: sans-serif;
+  font-weight: 100;
+  font-size: 20px;
+}
+
+
+body {
+    background-color: #b3bfc7;
+    margin: 0px;
+}
+
 #content {
   margin-left: auto;
   margin-right: auto;
@@ -6,4 +32,46 @@
 
 #greeting-container {
   margin-top: 20px;
+}
+
+h1 {
+  text-align: center;
+  text-transform: uppercase;
+  font-family: sans-serif;
+}
+
+p {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a:link, a:visited {
+  background-color: #fca310;
+  text-transform: uppercase;
+  color: white;
+  padding: 12px 35px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+a:hover, a:active {
+  background-color: #d28025;
+}
+
+.circular {
+    border-top-left-radius:  50% 50%;
+    border-top-right-radius:  50% 50%;
+    border-bottom-left-radius:  50% 50%;
+    border-bottom-right-radius:  50% 50%;
+}
+
+.circle {
+  height: 200x;
+  width: 200px;
+  background-color: rgb(179, 67, 67);
+  border-radius: 50%;
+  display: inline-block;
 }
