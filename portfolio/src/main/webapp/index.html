@@ -7,20 +7,26 @@
   <script src="script.js"></script>
 </head>
 <body>
-  <div class="header" id="stickyHeader">
+  
+  <!--------------HEADER-------------->
+  <header>
     <h2 class = "title">Fiza Goyal</h2>
     
     <!-- The navigation menu -->
-    <div class="navbar">
-      <a class="active" href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#">Projects</a>
-      <a href="#">Contact</a>
-  </div>
-  </div>
+    <nav class = "top-navbar">
+      <ul>
+        <a class="active" href="#about"><li>About</li></a>
+        <a href="#experience"><li>Experience</li></a>
+        <a href="#projects"><li>Projects</li></a>
+        <a href="#contact"><li>Contact</li></a>
+        <a href="/resources/FizaGoyalResume.pdf" target="_blank" class = "resume"><li>Resume</li></a>
+      </ul>
+    </nav>
+    <div style="clear: both"></div>
+  </header>
+  
   <div id = "content">
     <div id = "about">
-        <a name = "about"></a>
         <h1>Hi! I'm Fiza</h1>
         <p>I'm currently an incoming junior studying Computer Science at the University of Illinois at Urbana-Champaign.</p>
         <img class = "circular" src="resources/headshot_square.png" alt="My headshot!" width="300" height="300">
@@ -31,8 +37,8 @@
         <div id="greeting-container"></div>
     </div>
     <div id = "experience">
-        <a name = "experience"></a>
         <h3>EXPERIENCE</h3>
     </div>
   </div>
 </body>
+</html>
