@@ -1,3 +1,12 @@
+/**************** VARIABLES *******************/
+:root {
+  --main-bg: #c5ceb9;
+  --main-bg-dark: #d28025;
+  --main-bg-darker: #4f5a3a;
+  --button: #fca310;
+  --button-hover: #4f5a3a;
+}
+
 /**************** MAIN *******************/
 body {
   margin: 0px;
@@ -36,7 +45,7 @@ li {
 }
 
 a {
-  background-color: #fca310;
+  background-color: var(--button);
   text-transform: uppercase;
   color: white;
   padding: 12px 20px;
@@ -48,7 +57,7 @@ a {
 }
 
 a:hover, a:active {
-  background-color: #7f8f62;
+  background-color: var(--button-hover);
 }
 
 
@@ -120,26 +129,25 @@ nav a:hover, a:active {
 }
 
 nav a:last-child {
-  border: 2px solid #fca310;
+  border: 2px solid var(--button);
 }
 
 
 nav a:last-child:hover {
-  background-color:  #fca310;
+  background-color:  var(--button);
 }
 
 
 /**************** HOME *******************/
 .green-section {
   width: 100%;
-  background-color: #c5ceb9;
+  background-color: var(--main-bg);
   height: 520px;
   position: relative;
   display: table;
 }
 
 .green-section .home {
-  /*background-color: #7f8f62;*/
   margin: 0 auto;
   padding: 0px 20px;
   width: 60%;
