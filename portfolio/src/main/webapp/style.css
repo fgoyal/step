@@ -211,6 +211,14 @@ nav ul li:last-child a:hover {
 }
 
 /**************** EXPERIENCE *******************/
+.project {
+  background-color: var(--main-bg);
+  margin: 5px;
+  padding: 20px;
+  width: 20vw;
+  height: 20vw;
+  float: left;
+}
 
 /**************** CONTACT *******************/
 .footer-social-links {
