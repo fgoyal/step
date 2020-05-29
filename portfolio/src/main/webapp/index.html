@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Fiza Goyal</title>
-  <link rel="stylesheet" href="style.css">-->
-  <!--<script src="script.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
   
@@ -15,7 +18,8 @@
     <!-- The navigation menu -->
     <nav class = "top-navbar">
       <ul>
-        <a class="active" href="#about"><li>About</li></a>
+        <a class="active" href="#about"><li>Home</li></a>
+        <a href="#about"><li>About</li></a>
         <a href="#experience"><li>Experience</li></a>
         <a href="#projects"><li>Projects</li></a>
         <a href="#contact"><li>Contact</li></a>
@@ -27,25 +31,26 @@
   
   
   <div id = "content">
-  <!--------------ABOUT-------------->
-    <div id = "about">
-      <img class = "circular" src="https://angietolpin.com/wp-content/uploads/2015/01/Angie-headshot-square.jpg" alt="My headshot!">
-      <div id = "front-bio">
-        <h1>Hi! I'm Fiza</h1>
-        <p>I'm currently an incoming junior studying Computer Science at the University of Illinois at Urbana-Champaign.</p>
-        
-        
-        <a href="/resources/FizaGoyalResume.pdf" target="_blank">Resume</a>
-        <span class="circle"></span>
-        <p>Click here to get a random message:</p>
-        <button onclick="addRandomGreeting()">Hello</button>
-        <div id="greeting-container"></div>
+  
+  <!--------------HOME-------------->
+  <section class = "green-section">
+      <div class = "home">
+        <div class = "front-bio">
+            <h3>Hi!</h3>
+            <h1>I'm Fiza.</h1>
+            <p>I'm currently a junior studying Computer Science at the University of Illinois at Urbana-Champaign.</p>
+            <a href="/resources/FizaGoyalResume.pdf" target="_blank">Resume</a>
+        </div>
+        <div class = "right">
+          <img class = "circular" src="resources/headshot_square.png" alt="My headshot!">
+        </div>
       </div>
-    </div>
+  </section>
     
-    <div id = "experience">
-        <h3>EXPERIENCE</h3>
-    </div>
+  <div id = "experience">
+    <h3>EXPERIENCE</h3>
+  </div>
     
   </div>
 </body>
+</html>
