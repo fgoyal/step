@@ -36,6 +36,10 @@ h1 {
   /* font-family: 'Roboto', sans-serif; */
 }
 
+h2 {
+  text-align: center;
+}
+
 li {
   list-style-type: none;
 }
@@ -207,3 +211,43 @@ nav ul li:last-child a:hover {
 }
 
 /**************** EXPERIENCE *******************/
+
+/**************** CONTACT *******************/
+.footer-social-links {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.footer-social-links a {
+  background-color: transparent;
+  padding: 0px;
+  letter-spacing: 1px;
+  margin: 0px;
+  border: 0em;
+}
+
+.footer-social-links a:hover, a:active {
+  background-color: transparent;
+}
+
+.fa {
+  padding: 12px;
+  font-size: 30px;
+  text-align: center;
+  text-decoration: none;
+  margin: 0px 2px;
+  border-radius: 50%;
+  background-color: var(--main-bg);
+  color: black;
+}
+
+.fa-linkedin:hover {
+  background: #007bb5;
+  color: white;
+}
+
+.fa-github:hover {
+  background: #333;
+  color: white;
+}
