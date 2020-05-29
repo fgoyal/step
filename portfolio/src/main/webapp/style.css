@@ -21,7 +21,7 @@ body {
   width: 100%;
 }
 
-h1, h2, h3 {
+h1, h3 {
   font-family: 'Slabo 27px', serif;
   margin: 0px; 
   padding: 0px;
@@ -34,11 +34,6 @@ h1 {
   line-height: 0.7em;
   margin-top: 20px;
   /* font-family: 'Roboto', sans-serif; */
-}
-
-h3 {
-  font-size: 2em;
-  
 }
 
 li {
@@ -122,8 +117,8 @@ header {
   display: inline-block;
   float: left;
   padding: 12px 35px;
+  line-height: 1em;
   /*background-color: green;*/
-  height: 100%;
 }
 
 nav {
@@ -148,7 +143,7 @@ nav li {
   padding: 0px;
 }
 
-nav a {
+nav ul li a {
   color: black;
   font-size: 0.7em;
   font-weight: 300px;
@@ -160,18 +155,18 @@ nav a {
 }
 
 
-nav a:hover, a:active {
+nav ul li a:hover, a:active {
   background-color: white;
   color: black;
   border-bottom: 2px solid black;
 }
 
-nav a:last-child {
+nav ul li:last-child a {
   border: 2px solid var(--button);
 }
 
 
-nav a:last-child:hover {
+nav ul li:last-child a:hover {
   background-color:  var(--button);
 }
 
@@ -193,6 +188,11 @@ nav a:last-child:hover {
   display: table-cell;
   vertical-align: middle;
   padding-right: 40px;
+}
+
+.home-subheading {
+  font-size: 2em;
+  color: var(--main-bg-darker);
 }
 
 .circular {
