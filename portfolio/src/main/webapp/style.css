@@ -1,5 +1,6 @@
 /**************** VARIABLES *******************/
 :root {
+  --main-bg-light: #eaebea;
   --main-bg: #c5ceb9;
   --main-bg-dark: #d28025;
   --main-bg-darker: #4f5a3a;
@@ -58,6 +59,43 @@ a {
 
 a:hover, a:active {
   background-color: var(--button-hover);
+}
+
+.no-color-section {
+  width: 100%;
+  position: relative;
+  display: table;
+}
+
+.light-color-section {
+  width: 100%;
+  background-color: var(--main-bg-light);
+  position: relative;
+  display: table;
+}
+
+.bg-color-section {
+  width: 100%;
+  background-color: var(--main-bg);
+  position: relative;
+  display: table;
+}
+
+.dark-color-section {
+  width: 100%;
+  background-color: var(--main-bg-darker);
+  position: relative;
+  display: table;
+}
+
+.inner-section {
+  margin: 0 auto;
+  padding: 0px 20px;
+  width: 70%;
+  height: auto;
+  position: relative;
+  vertical-align: middle;
+  display: table;
 }
 
 
@@ -139,26 +177,17 @@ nav a:last-child:hover {
 
 
 /**************** HOME *******************/
-.green-section {
-  width: 100%;
-  background-color: var(--main-bg);
+
+.home-banner {
   height: 520px;
-  position: relative;
-  display: table;
 }
 
-.green-section .home {
-  margin: 0 auto;
-  padding: 0px 20px;
+#home {
   width: 60%;
   margin-top: 100px;
-  height: auto;
-  position: relative;
-  vertical-align: middle;
-  display: table;
 }
 
-.home .front-bio {
+#home .front-bio {
   width: 50%;
   height: auto;
   display: table-cell;
@@ -176,3 +205,5 @@ nav a:last-child:hover {
   height: auto;
   display: block;
 }
+
+/**************** EXPERIENCE *******************/
