@@ -5,34 +5,104 @@
   <title>Fiza Goyal</title>
   <link rel="stylesheet" href="style.css">
   <script src="script.js"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-  <div class="header" id="stickyHeader">
-    <h2 class = "title">Fiza Goyal</h2>
+  
+  <!--------------HEADER-------------->
+  <header>
+    <h1 class = "title">Fiza Goyal</h1>
     
     <!-- The navigation menu -->
-    <div class="navbar">
-      <a class="active" href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#">Projects</a>
-      <a href="#">Contact</a>
-  </div>
-  </div>
+    <nav class = "top-navbar">
+      <ul>
+        <li><a class="active" href="#home">Home</a></li>
+        <!-- <li><a href="#experience">Experience</a></li> -->
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="/resources/FizaGoyalResume.pdf" target="_blank" class = "resume">Resume</a></li>
+      </ul>
+    </nav>
+    <div style="clear: both"></div>
+  </header>
+  
+  
   <div id = "content">
-    <div id = "about">
-        <a name = "about"></a>
-        <h1>Hi! I'm Fiza</h1>
-        <p>I'm currently an incoming junior studying Computer Science at the University of Illinois at Urbana-Champaign.</p>
-        <img class = "circular" src="resources/headshot_square.png" alt="My headshot!" width="300" height="300">
-        <a href="/resources/FizaGoyalResume.pdf" target="_blank">Resume</a>
-        <span class="circle"></span>
-        <p>Click here to get a random message:</p>
-        <button onclick="addRandomGreeting()">Hello</button>
-        <div id="greeting-container"></div>
+  
+  <!--------------HOME-------------->
+  <section class = "bg-color-section home-banner">
+      <div id = "home" class = "inner-section">
+        <div class = "front-bio">
+            <h1>
+              <span class = "home-subheading">hi!</span><br>
+              I'm Fiza
+            </h1>
+            <p>I'm a junior studying Computer Science at the <b>University of Illinois at Urbana-Champaign.</b> </p>
+            <p>I love finding the intersection between the technical and creative in everything I do.</p>
+            <a class = "link-button" href="/resources/FizaGoyalResume.pdf" target="_blank">Resume</a>
+        </div>
+        <div class = "right">
+          <img class = "circular" src="resources/headshot_square.png" alt="My headshot!">
+        </div>
+      </div>
+  </section>
+    
+  <!-- <section class = "light-color-section">
+    <div id = "experience" class = "inner-section">
+      <h2>EXPERIENCE</h2>
     </div>
-    <div id = "experience">
-        <a name = "experience"></a>
-        <h3>EXPERIENCE</h3>
+  </section> -->
+
+  <section class = "light-color-section">
+    <div id = "projects" class = "inner-section">
+      <h2>PROJECTS</h2>
+      <div class = "project">
+        <!-- <p class = "date"> Upcoming in Fall 2020!</p> -->
+        <h3> MechMania 2020 </h3>
+        <p class = "project-description">
+          MechMania is a 24-hour Game AI hackathon and a part of the Reflections Projections Conference hosted by ACM @ UIUC.
+          Each year, the MechMania staff build a game in relative secrecy.  
+          Competitors have 24 hours in which to implement a bot to play the game. 
+          These bots face off bots built by other teams and the team that builds the best bots win.
+        </p> 
+        <a class = "project-links" href="https://en.wikipedia.org/wiki/MechMania" target="_blank">Wiki</a>
+      </div>
+
+      <div class = "project">
+        <!-- <p class = "date">Spring 2019</p> -->
+        <h3> Solar System Visualization </h3>
+        <p class = "project-description">
+          An interactive map of the solar system, showing the sun and different planets. 
+          It can be used as a tool to learn the size proportions of the celestial bodies as well as their movement patterns.
+        </p> 
+        <a class = "project-links" href="https://github.com/fgoyal/SolarSystem" target="_blank">Github</a>
+      </div>
+
+      <div class = "project">
+        <!-- <p class = "date">Fall 2018</p> -->
+        <h3> Scan 2 Plan</h3>
+        <p class = "project-description">
+          An iOS app that lets you take pictures of flyers and posters and automatically add it into your calendar. This app uses NLP, Firebase, and Google MLKit for processing text.
+        </p> 
+        <a class = "project-links" href="https://github.com/fgoyal/SolarSystem" target="_blank">Github</a>
+      </div>
     </div>
+  </section>
+  
+  <section class = "dark-color-section">
+      <div id = "contact" class = "inner-section">
+      <h2>CONTACT</h2>
+      <div class="footer-social-links">
+        <a href="www.linkedin.com/in/fgoyal" title="LinkedIn" target="_blank"><i class="fa fa-linkedin fa-lg"></i></a>
+        <a href="www.github.com/fgoyal" title="Github" target="_blank"><i class="fa fa-github fa-lg"></i></a>
+      </div>
+    </div>
+  </section>
+    
   </div>
 </body>
+</html>
