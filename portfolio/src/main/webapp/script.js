@@ -33,4 +33,9 @@ function fetchData() {
   fetch("/data").then(response => response.text()).then((quote) => {
     document.getElementById('fetch-container').innerText = quote;
   });
+  
+  fetch('/data').then(response => response.json()).then((messages) => {
+    console.log(messages);
+  });
+
 }
