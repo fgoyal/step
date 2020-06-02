@@ -11,7 +11,7 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body>
+<body onload="getIntro()">
   
   <!--------------HEADER-------------->
   <header>
@@ -90,6 +90,14 @@
         </p> 
         <a class = "project-links" href="https://github.com/fgoyal/SolarSystem" target="_blank">Github</a>
       </div>
+    </div>
+  </section>
+
+  <section class = "dark-color-section">
+      <div id = "tutorial" class = "inner-section">
+      <h2>SERVER TUTORIAL</h2>
+      <button onclick="fetchData()">Say Hello!</button>
+      <div id="fetch-container"></div>
     </div>
   </section>
   
