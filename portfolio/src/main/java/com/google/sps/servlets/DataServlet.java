@@ -13,6 +13,7 @@
 // limitations under the License.
 
 package com.google.sps.servlets;
+import com.google.sps.data.Comments;
 import java.io.IOException;
 import com.google.gson.Gson;
 import java.util.ArrayList;
@@ -25,22 +26,48 @@ import javax.servlet.http.HttpServletResponse;
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-  private ArrayList<String> messages = new ArrayList<>(Arrays.asList("hello", "world", "server"));
+  private ArrayList<Comments> comments = new ArrayList<>();
+  private ArrayList<String> commentString = new ArrayList<>();
 
   /**
    * Converts an ArrayList instance into a JSON string using the Gson library.
    */
-  private String convertToJsonUsingGson(ArrayList<String> messages) {
+  private String convertToJsonUsingGson() {
     Gson gson = new Gson();
-    String json = gson.toJson(messages);
+    String json = gson.toJson(commentString);
     return json;
   }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html;");
-
-    String json = convertToJsonUsingGson(messages);
+    response.setContentType("application/json;");
+    String json = convertToJsonUsingGson();
     response.getWriter().println(json);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // Get the input from the form.
+    String name = getParameter(request, "fname", "");
+    String comment = getParameter(request, "comment-input", "");
+
+    Comments input = new Comments(name, comment);
+    comments.add(input);
+    commentString.add(comment);
+
+    // Respond with the result.
+    response.sendRedirect("/index.html");
+  }
+
+  /**
+   * @return the request parameter, or the default value if the parameter
+   *         was not specified by the client
+   */
+  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+    String value = request.getParameter(name);
+    if (value == null) {
+      return defaultValue;
+    }
+    return value;
   }
 }
