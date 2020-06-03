@@ -11,7 +11,7 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body>
+<body onload="fetchComments()">
   
   <!--------------HEADER-------------->
   <header>
@@ -92,10 +92,31 @@
       </div>
     </div>
   </section>
+
+  <!-- <section class = "dark-color-section">
+      <div id = "tutorial" class = "inner-section">
+      <h2>SERVER TUTORIAL</h2>
+      <button onclick="fetchData()">Say Hello!</button>
+      <div id="fetch-container"></div>
+    </div>
+  </section> -->
   
   <section class = "dark-color-section">
       <div id = "contact" class = "inner-section">
       <h2>CONTACT</h2>
+      <form id = "commentsForm" action="/data" method="POST">
+        <label for="nameLabel">Name</label><br>
+        <textarea type="text" id="userName" name="fname" placeholder="Name"></textarea>
+        <br/><br/>
+        <textarea id="comment" name="comment-input" placeholder="Leave a comment!" style="height:200px"></textarea>
+        <br>
+        <input type="submit" />
+      </form>
+      
+      <div id = "comments">
+        <h3>Here's what others think!</h3>
+        <ul id = "comments-container"></ul>
+      </div>
       <div class="footer-social-links">
         <a href="www.linkedin.com/in/fgoyal" title="LinkedIn" target="_blank"><i class="fa fa-linkedin fa-lg"></i></a>
         <a href="www.github.com/fgoyal" title="Github" target="_blank"><i class="fa fa-github fa-lg"></i></a>

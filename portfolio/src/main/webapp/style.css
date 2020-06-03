@@ -221,6 +221,14 @@ nav ul li:last-child a:hover {
 }
 
 /**************** CONTACT *******************/
+#commentsForm {
+  float: left;
+  
+}
+
+#comments {
+  float: right;
+}
 .footer-social-links {
   text-align: center;
   margin-bottom: 20px;
