@@ -16,6 +16,7 @@ package com.google.sps.servlets;
 import com.google.sps.data.Comments;
 import java.io.IOException;
 import com.google.gson.Gson;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.servlet.annotation.WebServlet;
@@ -23,28 +24,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
+/** Servlet that keeps a record of all comments that the server processes and sends them as a json */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-  private ArrayList<Comments> comments = new ArrayList<>();
-  private ArrayList<String> commentString = new ArrayList<>();
+  private List<Comments> allComments = new ArrayList<>(); 
+  private List<String> allCommentsAsString = new ArrayList<>();
 
   /**
    * Converts an ArrayList instance into a JSON string using the Gson library.
    */
-  private String convertToJsonUsingGson() {
+  private static <T> String convertToJsonUsingGson(List<T> list) {
     Gson gson = new Gson();
-    String json = gson.toJson(commentString);
-    return json;
+    return gson.toJson(list);
   }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json;");
-    String json = convertToJsonUsingGson();
+    String json = convertToJsonUsingGson(allCommentsAsString);
     response.getWriter().println(json);
   }
 
+  /**
+   * Add form comments into allComments and allCommentsAsString lists and redirect page
+   */
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the input from the form.
@@ -52,10 +55,9 @@ public class DataServlet extends HttpServlet {
     String comment = getParameter(request, "comment-input", "");
 
     Comments input = new Comments(name, comment);
-    comments.add(input);
-    commentString.add(comment);
+    allComments.add(input);
+    allCommentsAsString.add(comment);
 
-    // Respond with the result.
     response.sendRedirect("/index.html");
   }
 
