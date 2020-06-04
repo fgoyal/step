@@ -89,9 +89,6 @@ public class DataServlet extends HttpServlet {
    */
   private String getParameter(HttpServletRequest request, String name, String defaultValue) {
     String value = request.getParameter(name);
-    System.out.print("name = /");
-    System.out.print(value);
-    System.out.println("/");
     if (value == null || value.isEmpty()) {
       return defaultValue;
     }
