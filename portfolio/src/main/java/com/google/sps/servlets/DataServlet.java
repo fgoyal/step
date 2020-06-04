@@ -37,6 +37,21 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
   private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+  
+  protected final String REDIRECT_URL_HOME = "/";
+  protected final String JSON_CONTENT_TYPE = "application/json;";
+  protected final String COMMENT_ENTITY = "Comment";
+  protected final String COMMENT_LIMIT = "limit";
+
+  protected final String COMMENT_TIMESTAMP = "timestamp";
+  protected final String COMMENT_NAME = "name";
+  protected final String COMMENT_MESSAGE = "message";
+
+  protected final String FORM_INPUT_NAME = "name-input";
+  protected final String FORM_INPUT_MESSAGE = "message-input";
+
+  protected final String DEFAULT_NAME = "Anonymous";
+  protected final String DEFAULT_MESSAGE = "";
 
   /**
    * Converts an ArrayList instance into a JSON string using the Gson library.
@@ -48,20 +63,20 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    int limit = Integer.parseInt(request.getParameter("limit"));
-    Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
+    int limit = Integer.parseInt(request.getParameter(COMMENT_LIMIT));
+    Query query = new Query(COMMENT_ENTITY).addSort(COMMENT_TIMESTAMP, SortDirection.DESCENDING);
     // PreparedQuery results = datastore.prepare(query);
     List<Entity> entities = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(limit));
     List<Comment> allComments = new ArrayList<>();
     
     for (Entity entity : entities) {
-      String name = (String) entity.getProperty("name");
-      String message = (String) entity.getProperty("message");
+      String name = (String) entity.getProperty(COMMENT_NAME);
+      String message = (String) entity.getProperty(COMMENT_MESSAGE);
       Comment comment = new Comment(name, message);
       allComments.add(comment);
     }
 
-    response.setContentType("application/json;");
+    response.setContentType(JSON_CONTENT_TYPE);
     String json = convertToJsonUsingGson(allComments);
     response.getWriter().println(json);
   }
@@ -72,18 +87,18 @@ public class DataServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the input from the form.
-    String name = getParameter(request, "name-input", "Anonymous");
-    String message = getParameter(request, "message-input", "");
+    String name = getParameter(request, FORM_INPUT_NAME, DEFAULT_NAME);
+    String message = getParameter(request, FORM_INPUT_MESSAGE, DEFAULT_MESSAGE);
     long timestamp = System.currentTimeMillis();
 
-    Entity taskEntity = new Entity("Comment");
-    taskEntity.setProperty("name", name);
-    taskEntity.setProperty("message", message);
-    taskEntity.setProperty("timestamp", timestamp);
+    Entity taskEntity = new Entity(COMMENT_ENTITY);
+    taskEntity.setProperty(COMMENT_NAME, name);
+    taskEntity.setProperty(COMMENT_MESSAGE, message);
+    taskEntity.setProperty(COMMENT_TIMESTAMP, timestamp);
 
     datastore.put(taskEntity);
 
-    response.sendRedirect("/index.html");
+    response.sendRedirect(REDIRECT_URL_HOME);
   }
 
   /**
