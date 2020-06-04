@@ -228,6 +228,7 @@ nav ul li:last-child a:hover {
 #commentsForm #message {
  height: 200px;
 }
+
 #comments {
   float: right;
   width: 50%;

@@ -29,15 +29,30 @@ function addRandomGreeting() {
   greetingContainer.innerText = greeting;
 }
 
-function fetchComments() {
-  fetch('/data').then(response => response.json()).then((comments) => {
+function fetchComments(commentsLimit) {
+  const parameters = {'limit': commentsLimit};
+  const url = createQueryString('/data', parameters);
+  
+  fetch(url).then(response => response.json()).then((comments) => {
     const commentsListElement = document.getElementById('comments-container');
     
+    commentsListElement.innerHTML  = "";
     comments.forEach((comment) => {
       commentsListElement.appendChild(createListElement(comment));
     })
   });
 }
+
+/**
+ * Create query string from parameters 
+ */
+function createQueryString(url, parameters) {
+  const query = Object.entries(parameters)
+        .map(pair => pair.map(encodeURIComponent).join('='))
+        .join('&');
+  return url + "?" + query;
+}
+      
 
 /** Creates an <li> element containing text. */
 function createListElement(text) {
