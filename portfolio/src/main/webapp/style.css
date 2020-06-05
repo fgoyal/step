@@ -223,12 +223,32 @@ nav ul li:last-child a:hover {
 /**************** CONTACT *******************/
 #commentsForm {
   float: left;
-  
+}
+
+#commentsForm #message {
+ height: 200px;
 }
 
 #comments {
   float: right;
+  width: 50%;
 }
+
+#comments-container {
+  background-color: var(--main-bg);
+  height: 250px;
+  overflow:auto;
+}
+
+#comments-container li {
+  color:black;
+}
+
+#comments-container li .name-output {
+  color: var(--main-bg-darker);
+  display: block;
+}
+
 .footer-social-links {
   text-align: center;
   margin-bottom: 20px;

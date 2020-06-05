@@ -11,7 +11,7 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body onload="fetchComments()">
+<body onload="fetchComments(5)">
   
   <!--------------HEADER-------------->
   <header>
@@ -106,15 +106,22 @@
       <h2>CONTACT</h2>
       <form id = "commentsForm" action="/data" method="POST">
         <label for="nameLabel">Name</label><br>
-        <textarea type="text" id="userName" name="fname" placeholder="Name"></textarea>
+        <textarea type="text" id="name" name="name-input" placeholder="Name"></textarea>
         <br/><br/>
-        <textarea id="comment" name="comment-input" placeholder="Leave a comment!" style="height:200px"></textarea>
+        <textarea id="message" name="message-input" placeholder="Leave a comment!"></textarea>
         <br>
         <input type="submit" />
       </form>
       
       <div id = "comments">
         <h3>Here's what others think!</h3>
+        <select class="comments-limit" onChange="fetchComments(this.options[this.selectedIndex].value)">
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+          <option value="20">20</option>
+          <option value="25">25</option>
+        </select>
         <ul id = "comments-container"></ul>
       </div>
       <div class="footer-social-links">

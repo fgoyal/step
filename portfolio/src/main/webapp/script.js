@@ -12,39 +12,58 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+const FETCH_COMMENTS_URL = '/data';
+const COMMENT_CONTAINER = 'comments-container';
+const COMMENT_CLASS_NAME = 'comment';
+const NAME_CLASS_NAME = 'name-output';
+const MESSAGE_CLASS_NAME = 'message-output';
+const LIST_CHILD_TAG = 'li';
+const SPAN_TAG = 'span';
+
 /**
- * Adds a random greeting to the page.
+ * Add comments into the COMMENT_CONTAINER 
+ * @param commentsLimit the number of comments to display
  */
-
-// ---------------- ADD RANDOM GREETING ---------------- //
-function addRandomGreeting() {
-  const greetings =
-      ['I have a dog called Cheeku', 'I am a huge Harry Potter fan'];
-
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
-
-  // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
-}
-
-function fetchComments() {
-  fetch('/data').then(response => response.json()).then((comments) => {
-    const commentsList = document.getElementById('comments-container');
+function fetchComments(commentsLimit) {
+  const parameters = {'limit': commentsLimit};
+  const url = createQueryString(FETCH_COMMENTS_URL, parameters);
+  
+  fetch(url).then(response => response.json()).then((comments) => {
+    const commentsListElement = document.getElementById(COMMENT_CONTAINER);
     
-    commentsList.innerHTML = '';
-    for(var i = 0; i < comments.length; i++) {
-      var obj = comments[i];
-      console.log(obj);
-      commentsList.appendChild(createListElement(obj));
-    }
+    commentsListElement.innerHTML  = "";
+    comments.forEach((comment) => {
+      commentsListElement.appendChild(createListElement(comment));
+    })
   });
 }
 
-/** Creates an <li> element containing text. */
+/**
+ * Create query string from parameters
+ */
+function createQueryString(url, parameters) {
+  const query = Object.entries(parameters)
+        .map(pair => pair.map(encodeURIComponent).join('='))
+        .join('&');
+  return url + "?" + query;
+}
+
+/** 
+ * Creates an <li> element containing text.
+ */
 function createListElement(text) {
-  const liElement = document.createElement('li');
-  liElement.innerText = text;
+  const liElement = document.createElement(LIST_CHILD_TAG);
+  liElement.className = COMMENT_CLASS_NAME;
+
+  const nameElement = document.createElement(SPAN_TAG);
+  nameElement.className = NAME_CLASS_NAME;
+  nameElement.innerText = text.name;
+
+  const messageElement = document.createElement(SPAN_TAG);
+  messageElement.className = MESSAGE_CLASS_NAME;
+  messageElement.innerText = text.message;
+
+  liElement.appendChild(nameElement);
+  liElement.appendChild(messageElement);
   return liElement;
 }

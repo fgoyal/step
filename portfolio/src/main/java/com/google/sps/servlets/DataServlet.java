@@ -13,12 +13,21 @@
 // limitations under the License.
 
 package com.google.sps.servlets;
-import com.google.sps.data.Comments;
+import com.google.sps.data.Comment;
 import java.io.IOException;
 import com.google.gson.Gson;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.api.datastore.FetchOptions;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,8 +36,22 @@ import javax.servlet.http.HttpServletResponse;
 /** Servlet that keeps a record of all comments that the server processes and sends them as a json */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-  private List<Comments> allComments = new ArrayList<>(); 
-  private List<String> allCommentsAsString = new ArrayList<>();
+  private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+  
+  protected final String REDIRECT_URL_HOME = "/";
+  protected final String JSON_CONTENT_TYPE = "application/json;";
+  protected final String COMMENT_ENTITY = "Comment";
+  protected final String COMMENT_LIMIT = "limit";
+
+  protected final String COMMENT_TIMESTAMP = "timestamp";
+  protected final String COMMENT_NAME = "name";
+  protected final String COMMENT_MESSAGE = "message";
+
+  protected final String FORM_INPUT_NAME = "name-input";
+  protected final String FORM_INPUT_MESSAGE = "message-input";
+
+  protected final String DEFAULT_NAME = "Anonymous";
+  protected final String DEFAULT_MESSAGE = "";
 
   /**
    * Converts an ArrayList instance into a JSON string using the Gson library.
@@ -40,25 +63,42 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("application/json;");
-    String json = convertToJsonUsingGson(allCommentsAsString);
+    int limit = Integer.parseInt(request.getParameter(COMMENT_LIMIT));
+    Query query = new Query(COMMENT_ENTITY).addSort(COMMENT_TIMESTAMP, SortDirection.DESCENDING);
+    // PreparedQuery results = datastore.prepare(query);
+    List<Entity> entities = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(limit));
+    List<Comment> allComments = new ArrayList<>();
+    
+    for (Entity entity : entities) {
+      String name = (String) entity.getProperty(COMMENT_NAME);
+      String message = (String) entity.getProperty(COMMENT_MESSAGE);
+      Comment comment = new Comment(name, message);
+      allComments.add(comment);
+    }
+
+    response.setContentType(JSON_CONTENT_TYPE);
+    String json = convertToJsonUsingGson(allComments);
     response.getWriter().println(json);
   }
 
   /**
-   * Add form comments into allComments and allCommentsAsString lists and redirect page
+   * Add form comments into datastore as a Comment Entity with name, message, and timestamp properties
    */
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the input from the form.
-    String name = getParameter(request, "fname", "");
-    String comment = getParameter(request, "comment-input", "");
+    String name = getParameter(request, FORM_INPUT_NAME, DEFAULT_NAME);
+    String message = getParameter(request, FORM_INPUT_MESSAGE, DEFAULT_MESSAGE);
+    long timestamp = System.currentTimeMillis();
 
-    Comments input = new Comments(name, comment);
-    allComments.add(input);
-    allCommentsAsString.add(comment);
+    Entity taskEntity = new Entity(COMMENT_ENTITY);
+    taskEntity.setProperty(COMMENT_NAME, name);
+    taskEntity.setProperty(COMMENT_MESSAGE, message);
+    taskEntity.setProperty(COMMENT_TIMESTAMP, timestamp);
 
-    response.sendRedirect("/index.html");
+    datastore.put(taskEntity);
+
+    response.sendRedirect(REDIRECT_URL_HOME);
   }
 
   /**
@@ -67,7 +107,7 @@ public class DataServlet extends HttpServlet {
    */
   private String getParameter(HttpServletRequest request, String name, String defaultValue) {
     String value = request.getParameter(name);
-    if (value == null) {
+    if (value == null || value.isEmpty()) {
       return defaultValue;
     }
     return value;
