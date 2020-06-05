@@ -36,7 +36,7 @@ import javax.servlet.http.HttpServletResponse;
 /** Servlet that keeps a record of all comments that the server processes and sends them as a json */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-  private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+  protected DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
   
   protected final String REDIRECT_URL_HOME = "/";
   protected final String JSON_CONTENT_TYPE = "application/json;";
