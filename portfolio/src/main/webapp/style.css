@@ -176,3 +176,27 @@ h1 {
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
   margin-bottom: 16px;
 }
+
+.page-footer {
+  background-color: #222;
+  color: #ccc;
+  padding: 50px 0 30px;
+}
+
+.fa {
+  padding: 5px;
+  color: #666;
+}
+
+.fa-linkedin:hover {
+  color: #007bb5;
+}
+
+.fa-github:hover {
+  color: #fff;
+}
+
+.footer-copyright {
+  color: #666;
+  padding: 0px 40px 0;
+}
