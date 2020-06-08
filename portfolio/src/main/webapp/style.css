@@ -123,35 +123,38 @@ h1 {
   position: relative;
 }
 
-.overlay {
+#particles-js {
   position: absolute;
   min-height: 100%;
   min-width: 100%;
   left: 0;
   top: 0;
-  background: var(--main-bg);
-  opacity: 50%;
+  background: var(--main-bg-darker);
 }
 
 .description {
   margin-left: 20%;
-  background: var(--main-bg);
+  background: var(--main-bg-darker);
   padding: 15px;
   padding-right: 40px;
+  box-shadow: 0 0 10px 5px var(--main-bg-darker);
 }
 
 .sub-title {
   font-size: 0.5em;
-  color: var(--main-bg-darker);
+  color: #000;
   text-transform: none;
 }
 
 .description p {
   font-size: 1.3rem;
   line-height: 1.5;
+  color: #fff;
 }
 
-
+.description h1 {
+  color: var(--main-bg);
+}
 
 .features {
   margin: 4em auto;
