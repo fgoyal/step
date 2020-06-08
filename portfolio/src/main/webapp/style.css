@@ -9,12 +9,26 @@
   --nav-link: #000;
   --nav-link-hover: #000;
   --nav-link-underline: #000;
+  --body: #000;
 }
 
 /**************** MAIN *******************/
 body {
   padding: 0;
   margin: 0;
+  font-family: 'Roboto Condensed', sans-serif !important;
+  color: var(--body);
+}
+
+h1, h2, h3 {
+  font-family: 'Roboto Slab', serif !important;
+}
+
+h1 {
+  font-size: 5em;
+  text-transform: uppercase;
+  line-height: 0.7em;
+  letter-spacing: -1px;
 }
 
 /*--- NAVIGATION BAR ---*/
@@ -25,11 +39,14 @@ body {
 
 .navbar-brand {
   text-transform: uppercase;
+  margin-left: 10px;
+  letter-spacing: 0px;
 }
 
 .nav-link {
-  font-weight: bold;
-  font-size: 14px;
+  font-weight: thick;
+  letter-spacing: 2px;
+  font-size: 12px;
   text-transform: uppercase;
   text-decoration: none;
   color: var(--nav-link);
@@ -86,17 +103,21 @@ body {
 }
 
 .nav-btn {
-  font-weight: bold;
-  font-size: 14px;
+  font-weight: thick;
+  letter-spacing: 2px;
+  font-size: 12px;
   text-transform: uppercase;
   text-decoration: none;
   color: var(--nav-link);
+  border-radius: 0 !important;
+  outline-color: var(--button) !important;
 }
+
 
 /**************** HEADER *******************/
 
 .header {
-  background-image: url('resources/tech_background.png');
+  /* background-image: url('resources/tech_background.png'); */
   background-size: cover;
   background-position: center;
   position: relative;
@@ -109,21 +130,27 @@ body {
   left: 0;
   top: 0;
   background: var(--main-bg);
+  opacity: 50%;
 }
 
 .description {
   margin-left: 20%;
+  background: var(--main-bg);
+  padding: 15px;
+  padding-right: 40px;
 }
 
-.description h1 {
-  color: black;
+.sub-title {
+  font-size: 0.5em;
+  color: var(--main-bg-darker);
+  text-transform: none;
 }
 
 .description p {
-  color: #fff;
   font-size: 1.3rem;
   line-height: 1.5;
 }
+
 
 
 .features {
