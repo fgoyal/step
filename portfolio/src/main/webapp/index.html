@@ -21,7 +21,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet"> 
 </head>
-<body>
+<body onLoad="fetchComments(5)">
   <nav class="navbar fixed-top navbar-expand-md">
   <h1 class="navbar-brand">Fiza Goyal</h1>
   <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
@@ -100,8 +100,7 @@
       </div>
       <div class="col-lg-6 col-md-6 col-sm-12">
         <p> Here's what others think!</p>
-        <div class = "comment-display grey-background">
-          <p>hi</p>
+        <div class = "comment-display">
         </div>
         <div class="input-group mb-3">
           <div class="input-group-prepend">
