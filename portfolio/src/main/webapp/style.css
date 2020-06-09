@@ -194,10 +194,23 @@ h1 {
 
 .form-btn {
   background-color: var(--button) !important;
+  color: black;
 }
 
 .form-btn:hover {
   background-color: var(--button-darker) !important;
+  color: black;
+}
+
+.comments-form {
+  margin: 0px 4px;
+  padding: 10px;
+}
+
+.comment-display {
+  background: white;
+  height: 260px;
+  border-radius: 3px;
 }
 
 /**************** FOOTER *******************/
