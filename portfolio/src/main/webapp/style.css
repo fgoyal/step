@@ -3,6 +3,7 @@
   --main-bg-light: #eaebea;
   --main-bg: #c5ceb9;
   --main-bg-darker: #4f5a3a;
+  --main-bg-grey: #222;
   --button: #fca310;
   --button-darker: #d28025;
   --button-hover: #4f5a3a;
@@ -31,6 +32,27 @@ h1 {
   letter-spacing: -1px;
 }
 
+.light-background {
+  background: var(--main-bg-light);
+  position: relative;
+}
+
+.main-background {
+  background: var(--main-bg);
+  position: relative;
+}
+
+.dark-background {
+  background: var(--main-bg-darker);
+}
+
+.grey-background {
+  background: var(--main-bg-grey);
+}
+
+.container {
+  padding: 30px 0px;
+}
 /*--- NAVIGATION BAR ---*/
 
 .navbar {
@@ -156,31 +178,31 @@ h1 {
   color: var(--main-bg);
 }
 
-.features {
-  margin: 4em auto;
-  padding: 1em;
-  position: relative;
-}
+/**************** PROJECTS *******************/
 
-.feature-title {
-  color: #333;
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-}
-
-.features img {
+.projects img {
   -webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
   -moz-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
   margin-bottom: 16px;
 }
 
+/**************** COMMENTS *******************/
+#comments-form #message {
+  height: 200px;
+}
+
+.form-btn {
+  background-color: var(--button) !important;
+}
+
+.form-btn:hover {
+  background-color: var(--button-darker) !important;
+}
+
+/**************** FOOTER *******************/
 .page-footer {
-  background-color: #222;
-  color: #ccc;
-  padding: 50px 0 30px;
+  padding: 40px 0px;
 }
 
 .fa {
