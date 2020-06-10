@@ -17,8 +17,12 @@ const COMMENT_CONTAINER = 'comments-container';
 const COMMENT_CLASS_NAME = 'comment';
 const NAME_CLASS_NAME = 'name-output';
 const MESSAGE_CLASS_NAME = 'message-output';
+const CLASS_TAG = 'class';
 const LIST_CHILD_TAG = 'li';
-const SPAN_TAG = 'span';
+const DIV_TAG = 'div';
+const P_TAG = 'p';
+const SMALL_TAG = 'small';
+
 
 /**
  * 
@@ -67,17 +71,22 @@ function createQueryString(url, parameters) {
  */
 function createListElement(text) {
   const liElement = document.createElement(LIST_CHILD_TAG);
-  liElement.className = COMMENT_CLASS_NAME;
+  liElement.setAttribute(CLASS_TAG, "media");
 
-  const nameElement = document.createElement(SPAN_TAG);
-  nameElement.className = NAME_CLASS_NAME;
-  nameElement.innerText = text.name;
+  const bodyDiv = document.createElement(DIV_TAG); 
+  bodyDiv.setAttribute(CLASS_TAG, "media-body");
 
-  const messageElement = document.createElement(SPAN_TAG);
-  messageElement.className = MESSAGE_CLASS_NAME;
+  const nameElement = document.createElement(SMALL_TAG);
+  nameElement.setAttribute(CLASS_TAG, "text-muted");
+  nameElement.textContent = ''.concat(text.name,' says: ');
+
+  const messageElement = document.createElement(P_TAG);
+  nameElement.setAttribute(CLASS_TAG, "message-output");
   messageElement.innerText = text.message;
 
-  liElement.appendChild(nameElement);
-  liElement.appendChild(messageElement);
+  liElement.appendChild(bodyDiv);
+  bodyDiv.appendChild(nameElement);
+  bodyDiv.appendChild(messageElement);
+
   return liElement;
 }
