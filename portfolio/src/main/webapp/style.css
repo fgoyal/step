@@ -34,6 +34,13 @@ h1 {
   letter-spacing: -1px;
 }
 
+a.anchor {
+  display: block;
+  position: relative;
+  top: -60px;
+  visibility: hidden;
+}
+
 .light-background {
   background: var(--main-light-2);
   position: relative;
