@@ -1,16 +1,16 @@
 /**************** VARIABLES *******************/
 :root {
-  --main-bg-light: #eaebea;
-  --main-bg: #c5ceb9;
-  --main-bg-darker: #4f5a3a;
-  --main-bg-grey: #222;
-  --button: #fca310;
-  --button-darker: #d28025;
-  --button-hover: #4f5a3a;
-  --nav-link: #000;
-  --nav-link-hover: #000;
-  --nav-link-underline: #000;
-  --body: #000;
+  --main-light-2: #FDFEFE;
+  --main-light-1: #D3E9E9;
+  --main: #7EC8C2;
+  --main-dark-1: #3DA3A0;
+  --main-dark-2: #135A66;
+  --main-dark-3: #05080C;
+  --main-grey-light: #DADFE1;
+  --main-grey: #A1B5B5;
+  --main-grey-dark: #4B5054;
+  --contrast-light: #F9D387;
+  --contrast-dark: #E8A87C;
 }
 
 /**************** MAIN *******************/
@@ -33,21 +33,21 @@ h1 {
 }
 
 .light-background {
-  background: var(--main-bg-light);
+  background: var(--main-light-2);
   position: relative;
 }
 
 .main-background {
-  background: var(--main-bg);
+  background: var(--main-dark-1);
   position: relative;
 }
 
 .dark-background {
-  background: var(--main-bg-darker);
+  background: var(--main-dark-3);
 }
 
 .grey-background {
-  background: var(--main-bg-grey);
+  background: var(--main-grey-dark);
 }
 
 .container {
@@ -71,7 +71,7 @@ h1 {
   font-size: 12px;
   text-transform: uppercase;
   text-decoration: none;
-  color: var(--nav-link);
+  color: var(--main-dark-3);
   padding: 20px 0px;
   margin: 0px 20px;
   display: inline-block;
@@ -79,7 +79,7 @@ h1 {
 }
 
 .nav-link:hover {
-  color: var(--nav-link-hover);
+  color: var(--main-dark-3);
 }
 
 .nav-link::before {
@@ -87,7 +87,7 @@ h1 {
   height: 5px;
   content: "";
   position: absolute;
-  background-color: var(--nav-link-underline);
+  background-color: var(--main-dark-3);
 }
 
 .nav-link-ltr::before {
@@ -130,9 +130,13 @@ h1 {
   font-size: 12px;
   text-transform: uppercase;
   text-decoration: none;
-  color: var(--nav-link);
+  color: var(--main-dark-3);
   border-radius: 0 !important;
-  outline-color: var(--button) !important;
+  outline-color: var(--contrast-light) !important;
+}
+
+.nav-btn:hover {
+  background-color: var(--contrast-light);
 }
 
 
@@ -151,31 +155,31 @@ h1 {
   min-width: 100%;
   left: 0;
   top: 0;
-  background: var(--main-bg-darker);
+  background: var(--main-dark-1);
 }
 
 .description {
   margin-left: 20%;
-  background: var(--main-bg-darker);
+  background: var(--main-dark-1);
   padding: 15px;
   padding-right: 40px;
-  box-shadow: 0 0 10px 5px var(--main-bg-darker);
+  box-shadow: 0 0 10px 5px var(--main-dark-1);
 }
 
 .sub-title {
   font-size: 0.5em;
-  color: #000;
+  color: var(--main-dark-2);
   text-transform: none;
 }
 
 .description p {
   font-size: 1.3rem;
   line-height: 1.5;
-  color: #fff;
+  color: white;
 }
 
 .description h1 {
-  color: var(--main-bg);
+  color: var(--main-light-2);
 }
 
 /**************** PROJECTS *******************/
@@ -193,13 +197,13 @@ h1 {
 }
 
 .form-btn {
-  background-color: var(--button) !important;
-  color: black;
+  background-color: var(--contrast-light) !important;
+  color: var(--main-dark-3);
 }
 
 .form-btn:hover {
-  background-color: var(--button-darker) !important;
-  color: black;
+  background-color: var(--contrast-dark) !important;
+  color: var(--main-dark-3);
 }
 
 .comments-form {
@@ -215,7 +219,7 @@ h1 {
 }
 
 #comments-container .media {
-  border-bottom:1px solid var(--main-bg-light);
+  border-bottom:1px solid var(--main-light-1);
   margin:10px;
 }
 
@@ -226,7 +230,7 @@ h1 {
 
 .fa {
   padding: 5px;
-  color: #666;
+  color: var(--main-grey);
 }
 
 .fa-linkedin:hover {
@@ -238,6 +242,6 @@ h1 {
 }
 
 .footer-copyright {
-  color: #666;
+  color: var(--main-grey);
   padding: 0px 40px 0;
 }
