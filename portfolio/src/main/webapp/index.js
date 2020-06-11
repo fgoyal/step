@@ -14,10 +14,10 @@
 
 const FETCH_COMMENTS_URL = '/data';
 const COMMENT_CONTAINER = 'comments-container';
-const COMMENT_CLASS_NAME = 'comment';
-const NAME_CLASS_NAME = 'name-output';
-const MESSAGE_CLASS_NAME = 'message-output';
-
+const LIST_CLASS = "media";
+const LIST_DIV_CLASS = "media-body";
+const NAME_CLASS = "text-muted";
+const MESSAGE_CLASS = "message-output";
 
 /**
  * 
@@ -66,17 +66,17 @@ function createQueryString(url, parameters) {
  */
 function createListElement(text) {
   const liElement = document.createElement("li");
-  liElement.setAttribute("class", "media");
+  liElement.setAttribute("class", LIST_CLASS);
 
   const bodyDiv = document.createElement("div"); 
-  bodyDiv.setAttribute("class", "media-body");
+  bodyDiv.setAttribute("class", LIST_DIV_CLASS);
 
   const nameElement = document.createElement("small");
-  nameElement.setAttribute("class", "text-muted");
+  nameElement.setAttribute("class", NAME_CLASS);
   nameElement.textContent = ''.concat(text.name,' says: ');
 
   const messageElement = document.createElement("p");
-  nameElement.setAttribute("class", "message-output");
+  nameElement.setAttribute("class", MESSAGE_CLASS);
   messageElement.innerText = text.message;
 
   liElement.appendChild(bodyDiv);
