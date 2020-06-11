@@ -5,12 +5,14 @@
   --main: #7EC8C2;
   --main-dark-1: #3DA3A0;
   --main-dark-2: #135A66;
-  --main-dark-3: #05080C;
+  --main-dark-3: #131B23;
+  /* --main-dark-3: #05080C; */
   --main-grey-light: #DADFE1;
-  --main-grey: #A1B5B5;
+  --main-grey: #B8BDC3;
   --main-grey-dark: #4B5054;
   --contrast-light: #F9D387;
   --contrast-dark: #E8A87C;
+  --highlight-light: #ed7880;
 }
 
 /**************** MAIN *******************/
@@ -230,7 +232,7 @@ h1 {
 
 .fa {
   padding: 5px;
-  color: var(--main-grey);
+  color: var(--main-grey-dark);
 }
 
 .fa-linkedin:hover {
@@ -242,6 +244,6 @@ h1 {
 }
 
 .footer-copyright {
-  color: var(--main-grey);
+  color: var(--main-grey-dark);
   padding: 0px 40px 0;
 }
