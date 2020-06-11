@@ -51,7 +51,7 @@ public class DataServlet extends HttpServlet {
   protected final String FORM_INPUT_MESSAGE = "message-input";
 
   protected final String DEFAULT_NAME = "Anonymous";
-  protected final String DEFAULT_MESSAGE = "";
+  protected final String DEFAULT_MESSAGE = null;
 
   /**
    * Converts an ArrayList instance into a JSON string using the Gson library.
@@ -90,6 +90,11 @@ public class DataServlet extends HttpServlet {
     String name = getParameter(request, FORM_INPUT_NAME, DEFAULT_NAME);
     String message = getParameter(request, FORM_INPUT_MESSAGE, DEFAULT_MESSAGE);
     long timestamp = System.currentTimeMillis();
+
+    if (message == null || message.isEmpty()) {
+      response.sendRedirect(REDIRECT_URL_HOME);
+      return;
+    }
 
     Entity taskEntity = new Entity(COMMENT_ENTITY);
     taskEntity.setProperty(COMMENT_NAME, name);
