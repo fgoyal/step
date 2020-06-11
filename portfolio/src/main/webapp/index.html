@@ -22,8 +22,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet"> 
 </head>
 <body onLoad="bodyOnLoad(5)">
-<!-- <body> -->
-  <nav class="navbar fixed-top navbar-expand-md">
+
+<!--------------- NAVBAR ---------------->
+<nav class="navbar fixed-top navbar-expand-md">
   <h1 class="navbar-brand">Fiza Goyal</h1>
   <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
     <span class="navbar-toggler-icon"></span>
@@ -37,6 +38,7 @@
   </div>
 </nav>
 
+<!--------------- HOME HEADER ---------------->
 <header class="page-header header container-fluid d-flex align-items-center position-relative vh-100 cover">
   <div id="particles-js"></div>
   <div class="row">
@@ -51,8 +53,30 @@
   </div>
 </header>
 
+<!--------------- ABOUT ---------------->
+<a class="anchor" id="about"> </a>
+<section class = "light-1-background">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="img-container">
+          <img src="resources/headshot_square.png" class="rounded-circle img-fluid " alt="My headshot!">
+          <div class="mask flex-center overlay"></div>
+        </div>
+      </div>
+      <div class="col-md-9 col-sm-6 col-xs-12">
+        <div class="profile-info">
+          <h2> About Me </h2>
+          <p> Hi! I'm Fiza</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--------------- PROJECTS ---------------->
 <a class="anchor" id="projects"> </a>
-<section class = "light-background">
+<section class = "light-2-background">
   <div class="container projects">
     <div class="row">
       <div class="col-lg-4 col-md-4 col-sm-12">
@@ -64,7 +88,7 @@
           Competitors have 24 hours in which to implement a bot to play the game. 
           These bots face off bots built by other teams and the team that builds the best bots win.
         </p>
-        <a class = "project-links" href="https://en.wikipedia.org/wiki/MechMania" target="_blank">Wiki</a>
+        <a class = "project-links btn" href="https://en.wikipedia.org/wiki/MechMania" target="_blank">Wiki</a>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-12">
         <h3 class="project-title">Solar System Visualization</h3>
@@ -73,7 +97,7 @@
           An interactive map of the solar system, showing the sun and different planets. 
           It can be used as a tool to learn the size proportions of the celestial bodies as well as their movement patterns.
         </p>
-        <a class = "project-links" href="https://github.com/fgoyal/SolarSystem" target="_blank">Github</a>
+        <a class = "project-links btn" href="https://github.com/fgoyal/SolarSystem" target="_blank">Github</a>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-12">
         <h3 class="project-title">Scan 2 Plan</h3>
@@ -81,12 +105,13 @@
         <p class = "project-description">
           An iOS app that lets you take pictures of flyers and posters and automatically add it into your calendar. This app uses NLP, Firebase, and Google MLKit for processing text.
         </p>
-        <a class = "project-links" href="https://github.com/fgoyal/SolarSystem" target="_blank">Github</a>
+        <a class = "project-links btn" href="https://github.com/fgoyal/SolarSystem" target="_blank">Github</a>
       </div>
     </div> 
   </div>
 </section>
 
+<!--------------- COMMENTS ---------------->
 <a class="anchor" id="contact"> </a>
 <section class = "main-background">
   <div class="container">
@@ -127,6 +152,7 @@
   </div>
 </section>
 
+<!--------------- FOOTER ---------------->
 <footer class="page-footer dark-background">
   <div class="footer-social-links text-center">
     <a href="www.linkedin.com/in/fgoyal" title="LinkedIn" target="_blank"><i class="fa fa-linkedin fa-lg"></i></a>

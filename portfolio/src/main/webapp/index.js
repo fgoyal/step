@@ -17,11 +17,6 @@ const COMMENT_CONTAINER = 'comments-container';
 const COMMENT_CLASS_NAME = 'comment';
 const NAME_CLASS_NAME = 'name-output';
 const MESSAGE_CLASS_NAME = 'message-output';
-const CLASS_TAG = 'class';
-const LIST_CHILD_TAG = 'li';
-const DIV_TAG = 'div';
-const P_TAG = 'p';
-const SMALL_TAG = 'small';
 
 
 /**
@@ -70,18 +65,18 @@ function createQueryString(url, parameters) {
  * Creates an <li> element containing text.
  */
 function createListElement(text) {
-  const liElement = document.createElement(LIST_CHILD_TAG);
-  liElement.setAttribute(CLASS_TAG, "media");
+  const liElement = document.createElement("li");
+  liElement.setAttribute("class", "media");
 
-  const bodyDiv = document.createElement(DIV_TAG); 
-  bodyDiv.setAttribute(CLASS_TAG, "media-body");
+  const bodyDiv = document.createElement("div"); 
+  bodyDiv.setAttribute("class", "media-body");
 
-  const nameElement = document.createElement(SMALL_TAG);
-  nameElement.setAttribute(CLASS_TAG, "text-muted");
+  const nameElement = document.createElement("small");
+  nameElement.setAttribute("class", "text-muted");
   nameElement.textContent = ''.concat(text.name,' says: ');
 
-  const messageElement = document.createElement(P_TAG);
-  nameElement.setAttribute(CLASS_TAG, "message-output");
+  const messageElement = document.createElement("p");
+  nameElement.setAttribute("class", "message-output");
   messageElement.innerText = text.message;
 
   liElement.appendChild(bodyDiv);
