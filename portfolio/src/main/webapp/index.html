@@ -15,14 +15,17 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="particles.js/particles.js"></script>
-  <script src="index.js"></script>
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="scripts/chart.js"></script>
+  <script src="scripts/comments.js"></script>
+  <script src="scripts/script.js"></script>
 
   <!-- FONTS -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet"> 
 </head>
-<body onLoad="bodyOnLoad(5)">
-
+<!-- <body onLoad="bodyOnLoad(5)"> -->
+<body>
 <!--------------- NAVBAR ---------------->
 <nav class="navbar fixed-top navbar-expand-md">
   <h1 class="navbar-brand">Fiza Goyal</h1>
@@ -42,13 +45,12 @@
 <header class="page-header header container-fluid d-flex align-items-center position-relative vh-100 cover">
   <div id="particles-js"></div>
   <div class="row">
-    <div class="col-8 description">
+    <div class="col-lg-8 col-md-8 col-sm-12 description">
       <h1>
-        <span class = "sub-title">hi!</span><br>
-        I'm Fiza
+        <span class = "sub-title">hi!</span><br><br>
+        I'm Fiza<br>
+        <span class = "sub-title">I'm a Computer Science student.</span>
       </h1>
-      <p>I'm a junior studying Computer Science at the <b>University of Illinois at Urbana-Champaign.</b> </p>
-      <p>I love finding the intersection between the technical and creative in everything I do.</p>
     </div>
   </div>
 </header>
@@ -66,8 +68,16 @@
       </div>
       <div class="col-md-9 col-sm-6 col-xs-12">
         <div class="profile-info">
-          <h2> About Me </h2>
-          <p> Hi! I'm Fiza</p>
+          <h2 class="section-title-left"><span>About Me</span></h2>
+          <p>
+            I'm Fiza Goyal, a junior studying Computer Science at the <b>University of Illinois at Urbana-Champaign.</b>
+            I love finding the intersection between the technical and creative in everything I do. I have experience with web development, app development, data science, and computer graphics!
+            <br>
+            In my free time, I like painting and learning the ukulele. I also love traveling the world!</p>
+            <button type="button" class="form-btn btn" data-toggle="collapse" data-target="#map">Click here to see a map of places I've been!</button>
+            <div id="map" class="collapse">
+                <div id="regions_div" class="center-block" style="width: 900px; height: 500px;"></div>
+            </div>
         </div>
       </div>
     </div>
@@ -80,32 +90,35 @@
   <div class="container projects">
     <div class="row">
       <div class="col-lg-4 col-md-4 col-sm-12">
-        <h3 class="project-title">MechMania 2020</h3>
-        <!-- <img src="images/column-1.jpg" class="img-fluid"> -->
-        <p class = "project-description">
-          MechMania is a 24-hour Game AI hackathon and a part of the Reflections Projections Conference hosted by ACM @ UIUC.
-          Each year, the MechMania staff build a game in relative secrecy.  
-          Competitors have 24 hours in which to implement a bot to play the game. 
-          These bots face off bots built by other teams and the team that builds the best bots win.
-        </p>
-        <a class = "project-links btn" href="https://en.wikipedia.org/wiki/MechMania" target="_blank">Wiki</a>
+        <div class = "project-box">
+          <h3 class="project-title">MechMania 2020</h3>
+          <p class = "project-description">
+            MechMania is a 24-hour Game AI hackathon and a part of the Reflections Projections Conference hosted by ACM @ UIUC.
+            Each year, the MechMania staff build a game in relative secrecy.  
+            Competitors have 24 hours in which to implement a bot to play the game. 
+            These bots face off bots built by other teams and the team that builds the best bots win.
+          </p>
+          <a class = "project-links btn" href="https://en.wikipedia.org/wiki/MechMania" target="_blank">Wiki</a>
+        </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-12">
-        <h3 class="project-title">Solar System Visualization</h3>
-        <!-- <img src="images/column-1.jpg" class="img-fluid"> -->
-        <p class = "project-description">
-          An interactive map of the solar system, showing the sun and different planets. 
-          It can be used as a tool to learn the size proportions of the celestial bodies as well as their movement patterns.
-        </p>
-        <a class = "project-links btn" href="https://github.com/fgoyal/SolarSystem" target="_blank">Github</a>
+        <div class = "project-box">
+          <h3 class="project-title">Solar System Visualization</h3>
+          <p class = "project-description">
+            An interactive map of the solar system, showing the sun and different planets. 
+            It can be used as a tool to learn the size proportions of the celestial bodies as well as their movement patterns.
+          </p>
+          <a class = "project-links btn" href="https://github.com/fgoyal/SolarSystem" target="_blank">Github</a>
+        </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-12">
-        <h3 class="project-title">Scan 2 Plan</h3>
-        <!-- <img src="images/column-1.jpg" class="img-fluid"> -->
-        <p class = "project-description">
-          An iOS app that lets you take pictures of flyers and posters and automatically add it into your calendar. This app uses NLP, Firebase, and Google MLKit for processing text.
-        </p>
-        <a class = "project-links btn" href="https://github.com/fgoyal/SolarSystem" target="_blank">Github</a>
+        <div class="project-box">
+          <h3 class="project-title">Scan 2 Plan</h3>
+          <p class = "project-description">
+            An iOS app that lets you take pictures of flyers and posters and automatically add it into your calendar. This app uses NLP, Firebase, and Google MLKit for processing text.
+          </p>
+          <a class = "project-links btn" href="https://github.com/fgoyal/SolarSystem" target="_blank">Github</a>
+        </div>
       </div>
     </div> 
   </div>

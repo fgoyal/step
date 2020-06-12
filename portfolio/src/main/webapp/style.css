@@ -179,12 +179,6 @@ a.anchor {
   box-shadow: 0 0 10px 5px var(--main-dark-1);
 }
 
-.sub-title {
-  font-size: 0.5em;
-  color: var(--main-dark-2);
-  text-transform: none;
-}
-
 .description p {
   font-size: 1.3rem;
   line-height: 1.5;
@@ -193,6 +187,13 @@ a.anchor {
 
 .description h1 {
   color: var(--main-light-2);
+}
+
+.sub-title {
+  font-size: 0.5em;
+  color: var(--main-dark-2);
+  text-transform: none;
+  line-height: 0.5;
 }
 
 /**************** ABOUT *******************/
@@ -227,12 +228,55 @@ img {
   filter: none;
 }
 
+.section-title-left {
+  margin-left: 40px;
+}
+
+.section-title-left > span {
+  position: relative;
+  display: inline-block;
+}
+
+.section-title-left > span:before, .section-title-left > span:after{
+  content: '';
+  position: absolute;
+  top: 50%;
+  border-bottom: 7px solid var(--main-dark-1);
+  margin: 0 20px;
+}
+
+.section-title-left > span:before{
+  right: 100%;
+  width: 20px;
+
+}
+.section-title-left > span:after{
+  left: 100%;
+  width: 100px
+}
+
+#regions_div {
+  margin-top: 20px;
+}
+
 /**************** PROJECTS *******************/
-.projects img {
-  -webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
-  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
-  margin-bottom: 16px;
+.project-box {
+  background: var(--main-light-1);
+  padding:37px;
+  box-shadow:0 0 10px 0 #ddd;
+  margin-bottom:30px;
+  height:100%
+}
+
+.project-box h3::after {
+    position: absolute;
+    content:'';
+    height:7px;
+    margin:0 auto;
+    left:0;
+    top:5%;
+    width:50%;
+    background: var(--main-dark-1);
 }
 
 /**************** COMMENTS *******************/

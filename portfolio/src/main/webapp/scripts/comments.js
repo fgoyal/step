@@ -19,20 +19,11 @@ const LIST_DIV_CLASS = "media-body";
 const NAME_CLASS = "text-muted";
 const MESSAGE_CLASS = "message-output";
 
-/**
- * 
- */
-function bodyOnLoad(commentsLimit) {
-  $(document).ready(function(){
-    $('.header').height($(window).height());
-  })
+window.addEventListener('load', function() {
+  console.log("comments.js");
+  fetchComments(5);
+});
 
-  particlesJS.load('particles-js', 'particles.js/particlesjs-config.json', function() {
-    console.log('callback - particles.js config loaded');
-  });
-
-  fetchComments(commentsLimit);
-}
 /**
  * Add comments into the COMMENT_CONTAINER 
  * @param commentsLimit the number of comments to display
