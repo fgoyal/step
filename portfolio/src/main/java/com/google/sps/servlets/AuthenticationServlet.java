@@ -14,35 +14,40 @@
 
 package com.google.sps.servlets;
 
-import com.google.appengine.api.users.UserService;
-import com.google.appengine.api.users.UserServiceFactory;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/")
-public class HomeServlet extends HttpServlet {
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 
+/**
+ * Servlet responsible for authenticating a user before they can comment
+ */
+@WebServlet("/auth-check")
+public class AuthenticationServlet extends DataServlet {
+  
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html");
-
     UserService userService = UserServiceFactory.getUserService();
+    List<String> loginStatus = new ArrayList<>();
+
     if (userService.isUserLoggedIn()) {
-      String userEmail = userService.getCurrentUser().getEmail();
-      String urlToRedirectToAfterUserLogsOut = "/";
-      String logoutUrl = userService.createLogoutURL(urlToRedirectToAfterUserLogsOut);
-
-      response.getWriter().println("<p>Hello " + userEmail + "!</p>");
-      response.getWriter().println("<p>Logout <a href=\"" + logoutUrl + "\">here</a>.</p>");
+      loginStatus.add("true");
+      loginStatus.add(userService.createLogoutURL("/"));
     } else {
-      String urlToRedirectToAfterUserLogsIn = "/";
-      String loginUrl = userService.createLoginURL(urlToRedirectToAfterUserLogsIn);
-
-      response.getWriter().println("<p>Hello stranger.</p>");
-      response.getWriter().println("<p>Login <a href=\"" + loginUrl + "\">here</a>.</p>");
+      loginStatus.add("false");
+      loginStatus.add(userService.createLoginURL("/"));
     }
+
+    response.setContentType("application/json");
+    String json = DataServlet.convertToJsonUsingGson(loginStatus);
+    response.getWriter().println(json);
   }
 }

@@ -294,21 +294,29 @@ img {
   color: var(--main-dark-3);
 }
 
-.comments-form {
-  margin: 0px 4px;
-  padding: 10px;
-}
-
 .comment-display {
   background: white;
   height: 260px;
   border-radius: 3px;
   overflow: auto;
+  padding: 10px;
 }
 
 #comments-container .media {
   border-bottom:1px solid var(--main-light-1);
-  margin:10px;
+}
+
+#form-inputs {
+  margin-bottom: 0px;
+  display: none;
+}
+
+#comments-form #login-status-button {
+  margin: 0px !important;
+}
+
+#comment-submit {
+  display: none;
 }
 
 /**************** FOOTER *******************/

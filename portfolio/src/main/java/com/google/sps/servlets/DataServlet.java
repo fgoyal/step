@@ -13,7 +13,7 @@
 // limitations under the License.
 
 package com.google.sps.servlets;
-import com.google.sps.data.Comment;
+import com.google.sps.utils.Comment;
 import java.io.IOException;
 import com.google.gson.Gson;
 import java.util.List;
@@ -32,6 +32,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 
 /** Servlet that keeps a record of all comments that the server processes and sends them as a json */
 @WebServlet("/data")
@@ -43,20 +45,22 @@ public class DataServlet extends HttpServlet {
   protected final String COMMENT_ENTITY = "Comment";
   protected final String COMMENT_LIMIT = "limit";
 
-  protected final String COMMENT_TIMESTAMP = "timestamp";
   protected final String COMMENT_NAME = "name";
+  protected final String COMMENT_EMAIL = "email";
   protected final String COMMENT_MESSAGE = "message";
+  protected final String COMMENT_TIMESTAMP = "timestamp";
 
   protected final String FORM_INPUT_NAME = "name-input";
   protected final String FORM_INPUT_MESSAGE = "message-input";
 
   protected final String DEFAULT_NAME = "Anonymous";
+  protected final String DEFAULT_EMAIL = "Guest";
   protected final String DEFAULT_MESSAGE = null;
 
   /**
    * Converts an ArrayList instance into a JSON string using the Gson library.
    */
-  private static <T> String convertToJsonUsingGson(List<T> list) {
+  public static <T> String convertToJsonUsingGson(List<T> list) {
     Gson gson = new Gson();
     return gson.toJson(list);
   }
@@ -71,8 +75,10 @@ public class DataServlet extends HttpServlet {
     
     for (Entity entity : entities) {
       String name = (String) entity.getProperty(COMMENT_NAME);
+      String email = (String) entity.getProperty(COMMENT_EMAIL);
       String message = (String) entity.getProperty(COMMENT_MESSAGE);
-      Comment comment = new Comment(name, message);
+      long timestamp = (long) entity.getProperty(COMMENT_TIMESTAMP);
+      Comment comment = new Comment(name, email, message, timestamp);
       allComments.add(comment);
     }
 
@@ -86,8 +92,22 @@ public class DataServlet extends HttpServlet {
    */
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    UserService userService = UserServiceFactory.getUserService();
+
+    // get Comment parameters
+    String default_name;
+    String email;
+
+    if (userService.isUserLoggedIn()) {
+      default_name = userService.getCurrentUser().getNickname();
+      email = userService.getCurrentUser().getEmail();
+    } else {
+      default_name = DEFAULT_NAME;
+      email = DEFAULT_EMAIL;
+    }
+
     // Get the input from the form.
-    String name = getParameter(request, FORM_INPUT_NAME, DEFAULT_NAME);
+    String name = getParameter(request, FORM_INPUT_NAME, default_name);
     String message = getParameter(request, FORM_INPUT_MESSAGE, DEFAULT_MESSAGE);
     long timestamp = System.currentTimeMillis();
 
@@ -98,6 +118,7 @@ public class DataServlet extends HttpServlet {
 
     Entity taskEntity = new Entity(COMMENT_ENTITY);
     taskEntity.setProperty(COMMENT_NAME, name);
+    taskEntity.setProperty(COMMENT_EMAIL, email);
     taskEntity.setProperty(COMMENT_MESSAGE, message);
     taskEntity.setProperty(COMMENT_TIMESTAMP, timestamp);
 
