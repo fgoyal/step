@@ -27,7 +27,6 @@ window.addEventListener('load', function() {
 
 function fetchLogInStatus() {
   fetch("/auth-check").then(response => response.json()).then((loginStatus) => {
-    var button = document.getElementById(LOGIN_BTN);
     var link = document.getElementById(LOGIN_LINK);
 
     if (loginStatus[0] == "true") {
@@ -35,15 +34,15 @@ function fetchLogInStatus() {
       changeElementDisplay(FORM_INPUTS, DISPLAY_SHOW);
       changeElementDisplay(COMMENT_SUBMIT_BTN, DISPLAY_SHOW);
       changeElementDisplay(COMMENTS_NO_ACCESS, DISPLAY_HIDE);
-      button.innerText = "Log out";
       link.href = loginStatus[1];
+      link.innerText = "Log out";
     } else {
       console.log("logged out");
       changeElementDisplay(FORM_INPUTS, DISPLAY_HIDE);
       changeElementDisplay(COMMENT_SUBMIT_BTN, DISPLAY_HIDE);
       changeElementDisplay(COMMENTS_NO_ACCESS, DISPLAY_SHOW);
-      button.innerText = "Log In";
       link.href = loginStatus[1];
+      link.innerText = "Log In";
     }
   });
 }

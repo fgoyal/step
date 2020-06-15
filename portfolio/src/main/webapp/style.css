@@ -308,15 +308,10 @@ img {
 
 #form-inputs {
   margin-bottom: 0px;
-  display: none;
 }
 
 #comments-form #login-status-button {
   margin: 0px !important;
-}
-
-#comment-submit {
-  display: none;
 }
 
 /**************** FOOTER *******************/

@@ -40,10 +40,13 @@ public class AuthenticationServlet extends DataServlet {
 
     if (userService.isUserLoggedIn()) {
       loginStatus.add("true");
-      loginStatus.add(userService.createLogoutURL("/"));
+      String logoutUrl = userService.createLogoutURL("/");
+      loginStatus.add(logoutUrl);
     } else {
       loginStatus.add("false");
-      loginStatus.add(userService.createLoginURL("/"));
+      String loginUrl = userService.createLoginURL("/");
+      loginStatus.add(loginUrl);
+      System.out.println("not logged in");
     }
 
     response.setContentType("application/json");
