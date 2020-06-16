@@ -33,7 +33,7 @@ public final class FindMeetingQuery {
     Collection<String> optionalAttendees = request.getOptionalAttendees();
 
     if (minDuration > MAX_DURATION) {
-        return new ArrayList<TimeRange>();
+      return new ArrayList<TimeRange>();
     }
 
     List<TimeRange> mandatoryEventTimes = getBusyTimeRanges(events, mandatoryAttendees);
@@ -47,23 +47,37 @@ public final class FindMeetingQuery {
     List<TimeRange> availableTimes = new ArrayList<TimeRange>();
 
     TimeRange gap;
+    int start = TimeRange.START_OF_DAY;
+
     if (busyTimes == null || busyTimes.isEmpty()) {
       gap = TimeRange.WHOLE_DAY;
       addIfValid(availableTimes, gap, minDuration);
       return availableTimes;
     }
 
+    for (int i = 0; i < busyTimes.size(); i++) {
+      gap = TimeRange.fromStartEnd(start, busyTimes.get(i).start(), false);
+      addIfValid(availableTimes, gap, minDuration);
+      start = busyTimes.get(i).end();
+    }
+
+    gap = TimeRange.fromStartEnd(start, TimeRange.END_OF_DAY, true);
+    addIfValid(availableTimes, gap, minDuration);
+
     return availableTimes;
+  }
+
+  /**
+   * Checks if a gap is valid, and then add to availableTimes
+   */
+  private void addIfValid(List<TimeRange> availableTimes, TimeRange gap, long minDuration) {
+    if (isRangeValid(gap, minDuration)) {
+      availableTimes.add(gap);
+    }
   }
 
   private boolean isRangeValid(TimeRange timeRange, long minDuration) {
     return (timeRange.start() < timeRange.end()) && (timeRange.duration() >= minDuration);
-  }
-
-  private void addIfValid(List<TimeRange> availableTimes, TimeRange timeRange, long minDuration) {
-    if (isRangeValid(timeRange, minDuration)) {
-      availableTimes.add(timeRange);
-    }
   }
 
   /**
