@@ -36,28 +36,29 @@ public class AuthenticationServlet extends DataServlet {
 
   class LoginStatus {
     private boolean loggedIn;
-    private String url;
+    private String loginURL;
+    private String logoutURL;
     
-    public LoginStatus(boolean loggedIn, String url) {
+    public LoginStatus(boolean loggedIn) {
       this.loggedIn = loggedIn;
-      this.url = url;
+      this.loginURL = userService.createLoginURL(REDIRECT_URL_HOME);
+      this.logoutURL = userService.createLogoutURL(REDIRECT_URL_HOME);
     }
- }
+
+    public void setLoggedIn(boolean loggedIn) {
+      this.loggedIn = loggedIn;
+    }
+  }
+  
+  // create class variables so we don't have to create a URL every request
+  private UserService userService = UserServiceFactory.getUserService();
+  private LoginStatus loginStatus = new LoginStatus(userService.isUserLoggedIn());
   
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    UserService userService = UserServiceFactory.getUserService();
-    LoginStatus loginStatus;
+    response.setContentType(JSON_CONTENT_TYPE);
+    loginStatus.setLoggedIn(userService.isUserLoggedIn());
 
-    if (userService.isUserLoggedIn()) {
-      String url = userService.createLogoutURL("/");
-      loginStatus = new LoginStatus(true, url);
-    } else {
-      String url = userService.createLoginURL("/");
-      loginStatus = new LoginStatus(false, url);
-    }
-
-    response.setContentType("application/json");
     Gson gson = new Gson();
     response.getWriter().println(gson.toJson(loginStatus));
   }

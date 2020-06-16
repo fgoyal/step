@@ -35,14 +35,14 @@ function fetchLogInStatus() {
       changeElementDisplay(FORM_INPUTS, DISPLAY_SHOW);
       changeElementDisplay(COMMENT_SUBMIT_BTN, DISPLAY_SHOW);
       changeElementDisplay(COMMENTS_NO_ACCESS, DISPLAY_HIDE);
-      link.href = loginStatus.url;
+      link.href = loginStatus.logoutURL;
       link.innerText = "Log out";
     } else {
       console.log("logged out");
       changeElementDisplay(FORM_INPUTS, DISPLAY_HIDE);
       changeElementDisplay(COMMENT_SUBMIT_BTN, DISPLAY_HIDE);
       changeElementDisplay(COMMENTS_NO_ACCESS, DISPLAY_SHOW);
-      link.href = loginStatus.url;
+      link.href = loginStatus.loginURL;
       link.innerText = "Log In";
     }
   });
