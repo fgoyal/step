@@ -27,7 +27,6 @@ public final class FindMeetingQuery {
   private static final long MAX_DURATION = TimeRange.WHOLE_DAY.duration();
 
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
-
     long minDuration = request.getDuration();
     Collection<String> mandatoryAttendees = request.getAttendees();
     Collection<String> optionalAttendees = request.getOptionalAttendees();
@@ -37,13 +36,24 @@ public final class FindMeetingQuery {
     }
 
     List<TimeRange> mandatoryEventTimes = getBusyTimeRanges(events, mandatoryAttendees);
-    mandatoryEventTimes.sort(TimeRange.ORDER_BY_START);
-    removeNestedTimeRanges(mandatoryEventTimes);
+    List<TimeRange> optionalEventTimes = getBusyTimeRanges(events, optionalAttendees);
+    List<TimeRange> allEventTimes =  new ArrayList<TimeRange>();
+    allEventTimes.addAll(mandatoryEventTimes);
+    allEventTimes.addAll(optionalEventTimes);
+
+    List<TimeRange> allAvailableTimes = getFreeTimeRanges(allEventTimes, minDuration);
+
+    // if there's meetings where all optional attendees can attend or if there's no mandatroy attendees
+    if (!allAvailableTimes.isEmpty() || mandatoryEventTimes.isEmpty()) {
+      return allAvailableTimes;
+    }
 
     return getFreeTimeRanges(mandatoryEventTimes, minDuration);
   }
 
   private List<TimeRange> getFreeTimeRanges(List<TimeRange> busyTimes, long minDuration) {
+    busyTimes.sort(TimeRange.ORDER_BY_START);
+    removeNestedTimeRanges(busyTimes);
     List<TimeRange> availableTimes = new ArrayList<TimeRange>();
 
     TimeRange gap;
