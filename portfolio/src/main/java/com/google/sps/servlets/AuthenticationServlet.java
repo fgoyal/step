@@ -17,6 +17,7 @@ package com.google.sps.servlets;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
@@ -32,25 +33,32 @@ import com.google.appengine.api.users.UserServiceFactory;
  */
 @WebServlet("/auth-check")
 public class AuthenticationServlet extends DataServlet {
+
+  class LoginStatus {
+    private boolean loggedIn;
+    private String url;
+    
+    public LoginStatus(boolean loggedIn, String url) {
+      this.loggedIn = loggedIn;
+      this.url = url;
+    }
+ }
   
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     UserService userService = UserServiceFactory.getUserService();
-    List<String> loginStatus = new ArrayList<>();
+    LoginStatus loginStatus;
 
     if (userService.isUserLoggedIn()) {
-      loginStatus.add("true");
-      String logoutUrl = userService.createLogoutURL("/");
-      loginStatus.add(logoutUrl);
+      String url = userService.createLogoutURL("/");
+      loginStatus = new LoginStatus(true, url);
     } else {
-      loginStatus.add("false");
-      String loginUrl = userService.createLoginURL("/");
-      loginStatus.add(loginUrl);
-      System.out.println("not logged in");
+      String url = userService.createLoginURL("/");
+      loginStatus = new LoginStatus(false, url);
     }
 
     response.setContentType("application/json");
-    String json = DataServlet.convertToJsonUsingGson(loginStatus);
-    response.getWriter().println(json);
+    Gson gson = new Gson();
+    response.getWriter().println(gson.toJson(loginStatus));
   }
 }

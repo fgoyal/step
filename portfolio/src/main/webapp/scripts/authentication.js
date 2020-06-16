@@ -28,20 +28,21 @@ window.addEventListener('load', function() {
 function fetchLogInStatus() {
   fetch("/auth-check").then(response => response.json()).then((loginStatus) => {
     var link = document.getElementById(LOGIN_LINK);
+    // var loginStatus = JSON.parse(loginStatusJSON);
 
-    if (loginStatus[0] == "true") {
+    if (loginStatus.loggedIn) {
       console.log("logged in");
       changeElementDisplay(FORM_INPUTS, DISPLAY_SHOW);
       changeElementDisplay(COMMENT_SUBMIT_BTN, DISPLAY_SHOW);
       changeElementDisplay(COMMENTS_NO_ACCESS, DISPLAY_HIDE);
-      link.href = loginStatus[1];
+      link.href = loginStatus.url;
       link.innerText = "Log out";
     } else {
       console.log("logged out");
       changeElementDisplay(FORM_INPUTS, DISPLAY_HIDE);
       changeElementDisplay(COMMENT_SUBMIT_BTN, DISPLAY_HIDE);
       changeElementDisplay(COMMENTS_NO_ACCESS, DISPLAY_SHOW);
-      link.href = loginStatus[1];
+      link.href = loginStatus.url;
       link.innerText = "Log In";
     }
   });
