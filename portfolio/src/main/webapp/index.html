@@ -16,6 +16,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="particles.js/particles.js"></script>
   <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="scripts/authentication.js"></script>
   <script src="scripts/chart.js"></script>
   <script src="scripts/comments.js"></script>
   <script src="scripts/script.js"></script>
@@ -29,12 +30,12 @@
 <!--------------- NAVBAR ---------------->
 <nav class="navbar fixed-top navbar-expand-md">
   <h1 class="navbar-brand">Fiza Goyal</h1>
-  <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
+  <button class="navbar-toggler navbar-light" type="button" data-toggle="collapse" data-target="#main-navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="main-navigation">
     <a class="nav-link nav-link-ltr" href="#">Home</a>
-    <!-- <a class="nav-link nav-link-ltr" href="#about">About</a> -->
+    <a class="nav-link nav-link-ltr" href="#about">About</a>
     <a class="nav-link nav-link-ltr" href="#projects">Projects</a>
     <a class="nav-link nav-link-ltr" href="#contact">Contact</a>
     <a class="nav-btn btn btn-outline-warning" href="/resources/FizaGoyalResume.pdf" role="button">Resume</a>
@@ -131,12 +132,18 @@
     <div class="row justify-content-center">
       <div class="col-lg-4 col-md-4 col-sm-12">
         <p>Leave me a message!</p>
-        <form id = "comments-form" action = "/data" method="POST">
-          <div class="form-group">
+        <form id="comments-form" action = "/data" method="POST">
+          <div id="comment-no-access">
+            <div class="comment-display d-flex align-items-center text-center">
+              <p>Permission denied: User needs to be logged in to a Google group to submit a comment</p>
+            </div>
+          </div>
+          <div id="form-inputs" class="form-group">
             <textarea name="name-input" id="name" class="form-control" placeholder="Name"></textarea>
             <textarea name="message-input" id="message" class="form-control" placeholder="Message"></textarea>
-            <input class="btn form-btn" type="submit" value="Submit">
           </div>
+          <input id="comment-submit" class="btn form-btn mb-3" type="submit" value="Submit">
+          <a id="login-link" class="btn form-btn mb-3">Log In</a>
         </form>       
       </div>
       <div class="col-lg-6 col-md-6 col-sm-12">
@@ -168,8 +175,8 @@
 <!--------------- FOOTER ---------------->
 <footer class="page-footer dark-background">
   <div class="footer-social-links text-center">
-    <a href="www.linkedin.com/in/fgoyal" title="LinkedIn" target="_blank"><i class="fa fa-linkedin fa-lg"></i></a>
-    <a href="www.github.com/fgoyal" title="Github" target="_blank"><i class="fa fa-github fa-lg"></i></a>
+    <a href="http://www.linkedin.com/in/fgoyal" title="LinkedIn" target="_blank"><i class="fa fa-linkedin fa-lg"></i></a>
+    <a href="http://www.github.com/fgoyal" title="Github" target="_blank"><i class="fa fa-github fa-lg"></i></a>
   </div>
   <div class="footer-copyright text-center">© 2020 Copyright: Fiza Goyal</div>
 </footer>

@@ -35,7 +35,7 @@ function drawRegionsMap() {
   ]);
 
   var options = {
-    colorAxis: {colors: ['#7ec8c2', '3da3a0', '#135a66']},
+    colorAxis: {colors: ['#7ec8c2', '#3da3a0', '#135a66']},
     backgroundColor: 'none',
     datalessRegionColor: '#fdfefe',
     defaultColor: '#fdfefe',
