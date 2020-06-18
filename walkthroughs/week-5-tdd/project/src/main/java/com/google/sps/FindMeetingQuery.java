@@ -14,10 +14,110 @@
 
 package com.google.sps;
 
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.stream.Stream;
+import java.util.stream.Collectors;
+import java.util.Iterator;
 
 public final class FindMeetingQuery {
+  private static final long MAX_DURATION = TimeRange.WHOLE_DAY.duration();
+
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
-    throw new UnsupportedOperationException("TODO: Implement this method.");
+    long minDuration = request.getDuration();
+    Collection<String> mandatoryAttendees = request.getAttendees();
+    Collection<String> optionalAttendees = request.getOptionalAttendees();
+
+    if (minDuration > MAX_DURATION) {
+      return new ArrayList<TimeRange>();
+    }
+
+    List<TimeRange> mandatoryEventTimes = getBusyTimeRanges(events, mandatoryAttendees);
+    List<TimeRange> optionalEventTimes = getBusyTimeRanges(events, optionalAttendees);
+    List<TimeRange> allEventTimes =  new ArrayList<TimeRange>();
+    allEventTimes.addAll(mandatoryEventTimes);
+    allEventTimes.addAll(optionalEventTimes);
+
+    List<TimeRange> allAvailableTimes = getFreeTimeRanges(allEventTimes, minDuration);
+
+    // if there's meetings where all optional attendees can attend or if there's no mandatroy attendees
+    if (!allAvailableTimes.isEmpty() || mandatoryEventTimes.isEmpty()) {
+      return allAvailableTimes;
+    }
+
+    return getFreeTimeRanges(mandatoryEventTimes, minDuration);
+  }
+
+  private List<TimeRange> getFreeTimeRanges(List<TimeRange> busyTimes, long minDuration) {
+    busyTimes.sort(TimeRange.ORDER_BY_START);
+    removeNestedTimeRanges(busyTimes);
+    List<TimeRange> availableTimes = new ArrayList<TimeRange>();
+
+    TimeRange gap;
+    int start = TimeRange.START_OF_DAY;
+
+    if (busyTimes == null || busyTimes.isEmpty()) {
+      gap = TimeRange.WHOLE_DAY;
+      addIfValid(availableTimes, gap, minDuration);
+      return availableTimes;
+    }
+
+    for (int i = 0; i < busyTimes.size(); i++) {
+      gap = TimeRange.fromStartEnd(start, busyTimes.get(i).start(), false);
+      addIfValid(availableTimes, gap, minDuration);
+      start = busyTimes.get(i).end();
+    }
+
+    gap = TimeRange.fromStartEnd(start, TimeRange.END_OF_DAY, true);
+    addIfValid(availableTimes, gap, minDuration);
+
+    return availableTimes;
+  }
+
+  /**
+   * Checks if a gap is valid, and then add to availableTimes
+   */
+  private void addIfValid(List<TimeRange> availableTimes, TimeRange gap, long minDuration) {
+    if (isRangeValid(gap, minDuration)) {
+      availableTimes.add(gap);
+    }
+  }
+
+  private boolean isRangeValid(TimeRange timeRange, long minDuration) {
+    return (timeRange.start() < timeRange.end()) && (timeRange.duration() >= minDuration);
+  }
+
+  /**
+   * Removes any nested TimeRanges from the list given
+   */
+  private void removeNestedTimeRanges(List<TimeRange> timeRanges) {
+    Iterator it = timeRanges.iterator();
+    TimeRange currentRange = null;
+    TimeRange prevRange = null;
+    
+    while (it.hasNext()) {
+      currentRange = (TimeRange) it.next();
+      if (prevRange != null && prevRange.contains(currentRange)) {
+        it.remove();
+      } else {
+        prevRange = currentRange;
+      }
+    }
+  }
+
+  /**
+   * Returns a List of all the TimeRanges for events with at least one attendee from the attendees Collection
+   * @param events: the events to filter by attendee
+   * @param attendees: the attendees to check the events for
+   */
+  private List<TimeRange> getBusyTimeRanges(Collection<Event> events, Collection<String> attendees) {
+    return events
+      .stream()
+      .filter(event -> !Collections.disjoint(event.getAttendees(), attendees))
+      .map(event -> event.getWhen())
+      .collect(Collectors.toList());
   }
 }
